@@ -1,4 +1,10 @@
+using AprendeLibre.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AplDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("conexion")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

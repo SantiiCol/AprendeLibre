@@ -18,5 +18,534 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #ffffff;
+}
+
+.container-section-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 0 20px;
+}
+
+.texto-izquierda {
+    flex: 1;
+    text-align: left;
+    padding-right: 20px;
+}
+
+    .texto-izquierda h2 {
+        font-size: 2rem;
+        color: #333333;
+    }
+
+    .texto-izquierda h3 {
+        font-size: 1.5rem;
+        color: #007bff;
+    }
+
+    .texto-izquierda p {
+        font-size: 1rem;
+        color: #666666;
+    }
+
+.click-azul {
+    color: #007bff;
+    cursor: pointer;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+.img-ilustracion {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+    .img-ilustracion img {
+        max-width: 100%;
+        height: auto;
+    }
+
+.container-section-2 {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+}
+
+.texto-varios h2 {
+    font-size: 2rem;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.texto-varios p {
+    font-size: 1.2rem;
+    color: #666666;
+    margin-bottom: 40px;
+}
+
+.cartas-comunidad {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.carta {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 0 10px; /* Espaciado lateral */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    .carta img {
+        max-width: 50px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .carta h3 {
+        font-size: 1.5rem;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    .carta p {
+        font-size: 1rem;
+        color: #666666;
+    }
+
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    position: relative; 
+    bottom: 0;
+}
+
+
+
+
+/*seccion 3 del index del home*/
+
+
+.container-section-3 {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+    padding-bottom: 120px; /* Aumenta el padding en la parte inferior para que el fondo sea más largo */
+    margin-bottom: 20px;
+    position: relative;
+}
+
+    .container-section-3 h2 {
+        font-size: 2rem;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    .container-section-3 p {
+        font-size: 1.2rem;
+        color: #666666;
+        margin-bottom: 40px;
+    }
+
+.recursos {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow: visible; /* Asegura que el contenido sobresaliente sea visible */
+}
+
+.recurso {
+    flex: 0 1 300px;
+    position: relative; /* Asegura que los elementos hijos posicionados absolutamente se alineen con este contenedor */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: visible; /* Permite que el contenido que sobresale sea visible */
+}
+
+.recurso:hover {
+     transform: scale(1.05);
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+}
+
+
+.recurso-imagen {
+    width: 100%;
+    height: 200px;
+    position: relative; /* Asegura que el texto pueda sobresalir de la imagen */
+    
+}
+
+.recurso-imagen img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     border-radius: 5px;
+}
+
+.recurso-texto {
+    position: absolute; /* Permite que el texto se posicione sobre la imagen */
+    bottom: -90px; /* Ajusta la posición del texto para sobresalir hacia abajo */
+    left: 50%;
+    transform: translateX(-50%); /* Centra el texto horizontalmente */
+    background: rgba(255, 255, 255, 0.85); /* Fondo más transparente */
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Asegura que el texto esté sobre la imagen */
+    border-radius: 5px;
+}
+
+
+.recurso:nth-child(2) { /* Ajusta el margen de la imagen central */
+    margin-top: 0; /* Asegura que la imagen central esté en la posición deseada */
+}
+
+.recurso:nth-child(1),
+.recurso:nth-child(3) { /* Ajusta el margen de las imágenes laterales */
+    margin-top: 40px; /* Ajusta la cantidad que deseas para que estén más abajo */
+    
+}
+
+
+    .recurso-texto p {
+        margin: 0;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .recurso-texto a {
+        display: inline-block;
+        margin-top: 10px;
+        color: #00b050;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+        .recurso-texto a:hover {
+            text-decoration: underline;
+        }
+
+
+
+
+/*estilo de la seccion 4 del index del home y el footer*/
+
+
+.container-section-4 {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 60px 20px;
+    margin: 0; /* Elimina los márgenes */
+    width: 100vw; /* Asegura que ocupe todo el ancho */
+    box-sizing: border-box; /* Incluye el padding dentro del ancho total */
+    position: relative; /* Asegura que esté en el flujo del documento correctamente */
+    left: 50%; /* Desplaza el contenedor para asegurar el ancho completo */
+    transform: translateX(-50%); /* Compensa el desplazamiento para centrar */
+}
+
+
+    .container-section-4 h2 {
+        font-size: 2.5rem;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+
+.btn-inicio {
+    padding: 10px 30px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .btn-inicio:hover {
+        background-color: #218838;
+    }
+
+    /*Estilo Para cartas de clase*/
+
+.titulo-clases {
+    text-align: center; /* Alinea el texto al centro */
+    color: black; /* Color del texto, que combina con el fondo oscuro de la carta */
+    font-family: Arial, sans-serif; /* Fuente que se ve bien con el diseño general */
+    font-size: 2em; /* Tamaño de la fuente */
+    margin: 0; /* Elimina los márgenes por defecto para un espaciado más uniforme */
+    padding: 0.5em 0; /* Espaciado vertical para mejorar la apariencia */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Añade una sombra sutil al texto para destacarlo */
+}
+.help-card {
+    margin-top: 20px;
+    margin-bottom:20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    transition: 400ms;
+}
+
+    .help-card:hover {
+        transform: scale(1.05);
+    }
+
+.help-image {
+    max-width: 100%;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.help-text {
+    margin-top: 15px;
+}
+
+    .help-text h2 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .help-text p {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+
+.parent-card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+    .cards .red {
+        background-color: #f43f5e;
+    }
+
+    .cards .blue {
+        background-color: #3b82f6;
+    }
+
+    .cards .green {
+        background-color: #22c55e;
+    }
+
+    .cards .card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        height: 100px;
+        width: 250px;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        transition: 400ms;
+    }
+
+        .cards .card p.tip {
+            font-size: 1em;
+            font-weight: 700;
+        }
+
+        .cards .card p.second-text {
+            font-size: 0.7em;
+        }
+
+        .cards .card:hover {
+            transform: scale(1.1, 1.1);
+        }
+
+        .cards .card:nth-child(7) {
+            order: 100;
+            flex: 1 1 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+
+/*Estilos para las cartas de clase*/
+
+.custom-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+    .custom-card img {
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid #ddd;
+    }
+
+.custom-card-body {
+    padding: 20px;
+}
+
+.custom-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.custom-card-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.custom-card-footer {
+    padding: 10px 10px;
+    background-color: #f8f9fa;
+    border-top: 2px solid #ddd;
+    text-align: center;
+}
+
+.btn-custom {
+    margin-right: 5px;
+}
+
+.row-custom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 400px;
+}
+
+.col-custom {
+    flex: 1 1 calc(33.333% - 20px);
+}
+
+
+footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    margin: 0;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 10px;
+    min-width: 250px;
+}
+
+    .footer-column h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #ffffff;
+    }
+
+    .footer-column ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .footer-column ul li {
+            margin: 5px 0;
+        }
+
+            .footer-column ul li a {
+                color: #bdc3c7;
+                text-decoration: none;
+            }
+
+                .footer-column ul li a:hover {
+                    text-decoration: underline;
+                }
+
+footer form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+footer input[type="email"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+footer button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    footer button[type="submit"]:hover {
+        background-color: #2980b9;
+    }

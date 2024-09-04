@@ -2,7 +2,91 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="text-center">
+        <div class="container-section-1">
+            <div class="texto-izquierda">
+                <h2>Aprendiendo Sin Barreras</h2>
+                <h3>Desde Cualquier Lugar</h3>
+                <p>Cultiva tu aprendizaje desde el lugar remoto que desees solo con un <span class="click-azul">click</span></p>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("Register", "Acceso")" class="btn btn-primary">Registrarse</a>
+                }
+                else
+                {
+                    <button>Bienvenido/a! @User.Identity.Name</button>
+                }
+            </div>
+            <div class="img-ilustracion">
+                <img src="~/img/section_1_learn.png" alt="Ilustración de aprendizaje" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container-section-2">
+        <div class="texto-varios">
+            <h2>¡Disfruta de Nuestra <br /> Comunidad!</h2>
+            <p>¿Qué puedes hacer en ella?</p>
+        </div>
+        <div class="cartas-comunidad">
+            <div class="carta">
+                <img src="~/img/icono_users.png" alt="Icono Miembros Comunidad" />
+                <h3>Miembros Comunidad</h3>
+                <p>¡Bienvenidos a nuestra comunidad educativa, donde estudiantes y profesores se unen para compartir conocimientos, inspiración y apoyo mutuo en su viaje académico y profesional!</p>
+            </div>
+            <div class="carta">
+                <img src="~/img/icono_manos_juntas.png" alt="Icono Aprender Juntos" />
+                <h3>Aprender Juntos</h3>
+                <p>En 'Aprender Juntos', estudiantes y profesores forman un equipo dinámico donde el intercambio de conocimientos y la colaboración son el corazón de nuestra comunidad.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-section-3">
+        <h2>Información</h2>
+        <p>En esta sección, encontrarás una variedad de recursos diseñados para facilitar y enriquecer tu proceso de aprendizaje. Cada uno de estos elementos cumple una función específica para ayudarte a alcanzar tus objetivos educativos:</p>
+        <div class="recursos">
+            <div class="recurso">
+                <div class="recurso-imagen">
+                    <img src="~/img/img1seccion3.png" alt="Libros">
+                    <div class="recurso-texto">
+                        <p>Estos textos son pilares fundamentales en el mundo del aprendizaje.</p>
+                        <a href="#">Libros &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="recurso">
+                <div class="recurso-imagen">
+                    <img src="~/img/img2seccion3.png" alt="Recursos de Aprendizaje">
+                    <div class="recurso-texto">
+                        <p>Rutas organizadas y claras que ofrecen actividades prácticas para adquirir habilidades específicas de manera efectiva.</p>
+                        <a href="#">Recursos de Aprendizaje &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="recurso">
+                <div class="recurso-imagen">
+                    <img src="~/img/img3seccion3.jpg" alt="Clase">
+                    <div class="recurso-texto">
+                        <p>Publicacion de posts en las materias disponibles con arhivos adjuntos y links para entrar a clases en vivo!</p>
+                        <a href="@Url.Action("Index", "Clase")">Clase &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-section-4">
+        <h2>Atrévete a hacer realidad tus sueños!</h2>
+        <button class="btn-inicio">Inicio &#8594;</button>
+    </div>
+</body>
+</html>

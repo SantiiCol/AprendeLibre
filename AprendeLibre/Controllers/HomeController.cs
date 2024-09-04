@@ -22,6 +22,14 @@ namespace AprendeLibre.Controllers
         {
             return View();
         }
+        public IActionResult CerrarSesion()
+        {
+            // Eliminar todas las variables de sesión
+            HttpContext.Session.Clear();
+
+            // Redirigir al usuario a la página de inicio de sesión
+            return RedirectToAction("Index", "Acceso");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

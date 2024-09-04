@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+@{
+    ViewBag.HideFooter = true;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrar</title>
+    <style>
+        .custom-form-container {
+            background-color: #ffffff;
+            border: 1px solid #d1e7dd; /* Verde suave */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+        .custom-form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .custom-form-control, .custom-form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b0bec5; /* Azul suave */
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+            .custom-form-control:focus, .custom-form-select:focus {
+                border-color: #4dabf7; /* Azul para enfoque */
+                outline: none;
+            }
+
+        .custom-btn-primary {
+            width: 100%;
+            padding: 10px;
+            background-color: #4dabf7; /* Azul relacionado con la educación */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .custom-btn-primary:hover {
+                background-color: #1e88e5; /* Azul más oscuro al pasar el mouse */
+            }
+
+        .custom-alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-color: #f5c6cb;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #f5c6cb;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-text-center {
+            text-align: center;
+            width: 100%;
+        }
+
+        .custom-text-primary {
+            color: #4dabf7;
+            text-decoration: none;
+        }
+
+            .custom-text-primary:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="custom-form-container">
+        <form action="@Url.Action("Register", "Acceso")" method="post">
+            <div class="col-12">
+                <label for="validationServer01" class="custom-form-label">Nombres</label>
+                <input type="text" class="custom-form-control" name="Nombres" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer02" class="custom-form-label">Apellidos</label>
+                <input type="text" class="custom-form-control" name="Apellido" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer02" class="custom-form-label">Nombre de usuario</label>
+                <input type="text" class="custom-form-control" name="NombreUsuario" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer03" class="custom-form-label">Correo</label>
+                <input type="email" class="custom-form-control" name="Correo" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer04" class="custom-form-label">Contraseña</label>
+                <input type="password" class="custom-form-control" name="Clave" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer04" class="custom-form-label">Confirmar Contraseña</label>
+                <input type="password" class="custom-form-control" name="ConfirmarClave" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer04" class="custom-form-label">ROL</label>
+                <select class="custom-form-select" name="RolId" required>
+                    <option selected disabled value="">Selecciona...</option>
+                    @foreach (var rol in ViewBag.Roles)
+                    {
+                        <option value="@rol.Value">@rol.Text</option>
+                    }
+                </select>
+                @if (ViewData["Mensaje"] != null)
+                {
+                    <div class="custom-alert-danger">@ViewData["Mensaje"]</div>
+                }
+            </div>
+            <div class="col-12">
+                <button class="custom-btn-primary" type="submit">Registrarse</button>
+            </div>
+            <div class="custom-text-center mt-3">
+                <a href="@Url.Action("Login", "Acceso")" class="custom-text-primary">¿Ya tienes una cuenta? Iniciar Sesion</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+

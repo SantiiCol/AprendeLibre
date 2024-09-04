@@ -1,0 +1,60 @@
+﻿@model AprendeLibre.Models.Clase
+
+@{
+    ViewData["Title"] = "Editar Clase";
+}
+
+<h2>Editar Clase</h2>
+
+<style>
+    .form-group{
+        margin-bottom: 15px;
+    }
+
+    .img-actual{
+        margin: 0px 15px 10px 0px
+    }
+
+</style>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Titulo" class="control-label"></label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Descripcion" class="control-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Materia" class="control-label"></label>
+        <input asp-for="Materia" class="form-control" />
+        <span asp-validation-for="Materia" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Imagen" class="control-label">Imagen Actual</label>
+        <img class="img-actual" src="@Model.Imagen" alt="Imagen actual" width="100" height="100"/>
+        <input type="file" asp-for="Imagen" class="form-control" />
+        <span asp-validation-for="Imagen" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SubirArchivo" class="control-label">Documento actual</label>
+        <a href="@Model.SubirArchivo" target="_blank">Ver documento actual</a>
+        <input type="file" asp-for="SubirArchivo" class="form-control"/>
+        <span asp-validation-for="SubirArchivo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

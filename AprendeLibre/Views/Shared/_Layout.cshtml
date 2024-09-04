@@ -3,44 +3,225 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AprendeLibre</title>
+    <title>@ViewData["Title"] - DesarrolloAprendeLibre</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/AprendeLibre.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DesarrolloAprendeLibre.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" />
+    <style>
+        .navbar {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+
+        /* Estilo para el contenedor del logo */
+        .navbar-brand {
+            display: flex;
+            align-items: center; /* Centra el logo verticalmente */
+            justify-content: center; /* Centra el logo horizontalmente */
+            flex: 1; /* Permite que el contenedor ocupe el espacio disponible */
+            margin-left: 50px; /* Ajusta el margen izquierdo para mover el logo a la derecha */
+        }
+
+            /* Estilo para la imagen del logo */
+            .navbar-brand img {
+                height: 80px; /* Ajusta el tamaño del logo según tus necesidades */
+                width: auto; /* Mantiene la relación de aspecto del logo */
+                margin: 0; /* Asegura que no haya margen alrededor del logo */
+            }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: center; /* Centra el menú en el contenedor */
+            flex: 1; /* Permite que el menú ocupe el espacio disponible */
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+            .navbar-nav .nav-item {
+                margin: 0 20px; /* Ajusta el margen entre los elementos del menú para aumentar el espacio */
+            }
+
+                .navbar-nav .nav-item .nav-link {
+                    font-size: 18px;
+                    font-weight: 500;
+                    color: #5a5a5a;
+                    padding: 15px 0; /* Ajusta el espaciado interno para separar las palabras */
+                }
+
+                    .navbar-nav .nav-item .nav-link:hover {
+                        color: #007bff;
+                    }
+
+        .nav-item .login-icon {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Empuja el botón de inicio de sesión a la derecha */
+        }
+
+            .nav-item .login-icon i {
+                font-size: 24px;
+                margin-right: 5px; /* Ajusta el espaciado entre el ícono y el texto */
+            }
+
+        .navbar-collapse {
+            display: flex;
+            align-items: center; /* Alinea verticalmente los elementos dentro del contenedor */
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #5a5a5a;
+        }
+
+        /* Estilos específicos para el botón de "Iniciar sesión" */
+        .login-button {
+            display: flex;
+            flex-direction: column; /* Alinea el ícono arriba del texto */
+            align-items: center; /* Centra el contenido horizontalmente */
+            margin-left: auto; /* Empuja el botón de inicio de sesión a la derecha */
+            font-size: 16px; /* Tamaño de la fuente del texto */
+            font-weight: 500; /* Peso de la fuente */
+            color: #5a5a5a; /* Color del texto y del ícono */
+            padding: 10px 20px; /* Espaciado interno del botón */
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: color 0.3s; /* Transición suave para el cambio de color */
+        }
+
+            .login-button i {
+                font-size: 24px; /* Tamaño del ícono */
+                margin-bottom: 5px; /* Espacio entre el ícono y el texto */
+            }
+
+            .login-button:hover {
+                color: white; /* Color del texto y del ícono al pasar el ratón */
+            }
+
+                .login-button:hover i {
+                    color: #007bff; /* Color del ícono al pasar el ratón */
+                }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AprendeLibre</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/Juli-logo.png" alt="Logo" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Recursos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Primaria</a></li>
+                                <li><a class="dropdown-item" href="#">Secundaria</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBooks" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Libros
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownBooks">
+                                <li><a class="dropdown-item" href="#">Romántico</a></li>
+                                <li><a class="dropdown-item" href="#">Terror y Misterio</a></li>
+                                <li><a class="dropdown-item" href="#">Aventura</a></li>
+                                <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
+                                <li><a class="dropdown-item" href="#">Policiaca</a></li>
+                                <li><a class="dropdown-item" href="#">Humor</a></li>
+                                <li><a class="dropdown-item" href="#">Poesía</a></li>
+                                <li><a class="dropdown-item" href="#">Cuentos</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Clase" asp-action="Index">Clase</a>
                         </li>
                     </ul>
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <button class="login-button btn btn-primary ms-auto" onclick="location.href='@Url.Action("Login", "Acceso")';">
+                            <i class="bi bi-person-circle"></i> Iniciar Sesión
+                        </button>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center ms-auto">
+                            <!-- Contenedor para el icono y nombre de usuario -->
+                            <div class="user-info me-3">
+                                <i class="bi bi-person-circle"></i> @User.Identity.Name
+                            </div>
+                            <!-- Botón de cerrar sesión con estilo -->
+                            <form asp-controller="Acceso" asp-action="Salir" method="post" class="mb-0">
+                                <button type="submit" class="btn btn-danger d-flex align-items-center">
+                                    <i class="bi bi-box-arrow-right me-1"></i> Cerrar Sesión
+                                </button>
+                            </form>
+                        </div>
+                    }
                 </div>
             </div>
         </nav>
     </header>
+
+
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - AprendeLibre - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    @if (ViewBag.HideFooter == null || ViewBag.HideFooter == false)
+    {
+        
+        <footer>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Compañía</h3>
+                    <ul>
+                        <li><a href="@Url.Action("Acerca_de_Nosotros", "FooterLinks")">Acerca de Nosotros</a></li>
+                        <li><a href="@Url.Action("Contactanos", "FooterLinks")">Contactanos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Soporte</h3>
+                    <ul>
+                        <li><a href="@Url.Action("Terminos_y_Servicios", "FooterLinks")">Términos y Servicios</a></li>
+                        <li><a href="@Url.Action("Politica_de_Privacidad", "FooterLinks")">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Entérate!</h3>
+                    <form>
+                        <input type="email" placeholder="Correo Electrónico" />
+                        <button type="submit">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+    }
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

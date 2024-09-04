@@ -1,0 +1,51 @@
+﻿@model AprendeLibre.Models.Clase
+
+@{
+    ViewData["Title"] = "Detalles de la Clase";
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<h2>Detalles de la Clase</h2>
+
+<div class="row-custom" >
+    <div class="col-custom">
+        <div class="custom-card">
+            @if (!string.IsNullOrEmpty(Model.Imagen))
+            {
+                <img src="@Model.Imagen" alt="Imagen de la clase" class="img-fluid">
+            }
+            <div class="custom-card-body">
+                <h5 class="custom-card-title">@Model.Titulo</h5>
+                <p class="custom-card-text"><b>Descripcion:</b> @Model.Descripcion</p>
+                <p class="custom-card-text"><small class="text-muted"><b>Materia:</b> @Model.Materia</small></p>
+            </div>
+            <div class="custom-card-footer">
+                @if (!string.IsNullOrEmpty(Model.SubirArchivo))
+                {
+                    <a href="@Model.SubirArchivo" class="btn btn-primary btn-custom" download>Descargar Archivo</a>
+                }
+                @if (User.IsInRole("Profesor"))
+                {
+                    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-warning btn-custom">Editar</a>
+                    <form asp-action="Delete" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-danger btn-custom">Eliminar</button>
+                    </form>
+                }
+                <a href="@Url.Action("Index", "Clase")" class="btn btn-secondary btn-custom">Volver a la Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

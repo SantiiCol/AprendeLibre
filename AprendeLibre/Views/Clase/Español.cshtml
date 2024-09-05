@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AprendeLibre.Models.Clase>
+
+@{
+    ViewData["Title"] = "Español";
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<h2>Clases de Español</h2>
+
+@if (User.IsInRole("Profesor"))
+{
+    <a class="btn btn-primary mb-3" href="@Url.Action("Create", "Clase")">Crear Nueva Clase</a>
+}
+<div class="row-custom">
+    @foreach (var clase in Model)
+    {
+        <div class="col-custom">
+            <div class="custom-card">
+                @if (!string.IsNullOrEmpty(clase.Imagen))
+                {
+                    <img src="@clase.Imagen" alt="Imagen de la clase">
+                }
+                <div class="custom-card-body">
+                    <h5 class="custom-card-title">@clase.Titulo</h5>
+                    <p class="custom-card-text"><b>Descripcion:</b> @clase.Descripcion</p>
+                    <p class="custom-card-text"><small class="text-muted"><b>Materia:</b> @clase.Materia</small></p>
+                </div>
+                <div class="custom-card-footer">
+                    @if (!string.IsNullOrEmpty(clase.SubirArchivo))
+                    {
+                        <a href="@clase.SubirArchivo" class="btn btn-primary btn-custom" download>Descargar Archivo</a>
+                    }
+                    <a href="@Url.Action("Details", "Clase", new { id = clase.Id })" class="btn btn-secondary btn-custom">Ver Detalles</a>
+                    @if (User.IsInRole("Profesor"))
+                    {
+                        <a href="@Url.Action("Edit", "Clase", new { id = clase.Id })" class="btn btn-warning btn-custom">Editar</a>
+                        <form asp-action="Delete" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@clase.Id" />
+                            <button type="submit" class="btn btn-danger btn-custom">Eliminar</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

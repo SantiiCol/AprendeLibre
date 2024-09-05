@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AprendeLibre")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1655f63ff2efa26d756ea5976cd6b6634783062a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ab6033689d5c3fcdad4d4c8dcba7699fb83ba41")]
 [assembly: System.Reflection.AssemblyProductAttribute("AprendeLibre")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AprendeLibre")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

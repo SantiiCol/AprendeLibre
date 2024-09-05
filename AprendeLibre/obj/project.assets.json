@@ -8,19 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\monro\\.nuget\\packages\\": {}
+    "C:\\Users\\Juliana Perdomo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\monro\\source\\repos\\AprendeLibreProyecto\\AprendeLibre\\AprendeLibre.csproj",
+      "projectUniqueName": "C:\\Users\\Juliana Perdomo\\source\\repos\\desarrolloAprendeLibreGrado\\AprendeLibre\\AprendeLibre.csproj",
       "projectName": "AprendeLibre",
-      "projectPath": "C:\\Users\\monro\\source\\repos\\AprendeLibreProyecto\\AprendeLibre\\AprendeLibre.csproj",
-      "packagesPath": "C:\\Users\\monro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\monro\\source\\repos\\AprendeLibreProyecto\\AprendeLibre\\obj\\",
+      "projectPath": "C:\\Users\\Juliana Perdomo\\source\\repos\\desarrolloAprendeLibreGrado\\AprendeLibre\\AprendeLibre.csproj",
+      "packagesPath": "C:\\Users\\Juliana Perdomo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Juliana Perdomo\\source\\repos\\desarrolloAprendeLibreGrado\\AprendeLibre\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\monro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Juliana Perdomo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -70,7 +75,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

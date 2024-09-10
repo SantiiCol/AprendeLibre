@@ -1,0 +1,37 @@
+﻿@model AprendeLibre.Models.Libro
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>@Model.NombreLibro</h1>
+
+<div class="modal-footer">
+    @if (!string.IsNullOrEmpty(Model.PdfUrl))
+    {
+        <a href="@Model.PdfUrl" target="_blank" class="btn btn-primary">Leer PDF</a>
+    }
+    else
+    {
+        <p>El PDF no está disponible.</p>
+    }
+
+    <a href="@Url.Action("Edit", "Libro", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+
+    <form action="@Url.Action("Delete", "Libro", new { id = Model.Id })" method="post" style="display:inline;" onsubmit="return ConfirmDelete()">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function ConfirmDelete() {
+            return confirm('¿Estás seguro de que deseas eliminar este libro? Esta acción no se puede deshacer.');
+        }
+    </script>
+}
+
+

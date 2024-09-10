@@ -76,7 +76,7 @@
         }
 
         footer {
-            background-color: #f8f9fa;
+            background-color: #2c3e50;
             padding: 10px 0;
             text-align: center;
             font-size: 14px;
@@ -129,6 +129,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Categoria" asp-action="Index">Categoria</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Recursos
@@ -143,14 +146,14 @@
                                 Libros
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownBooks">
-                                <li><a class="dropdown-item" href="#">Romántico</a></li>
-                                <li><a class="dropdown-item" href="#">Terror y Misterio</a></li>
-                                <li><a class="dropdown-item" href="#">Aventura</a></li>
-                                <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
-                                <li><a class="dropdown-item" href="#">Policiaca</a></li>
-                                <li><a class="dropdown-item" href="#">Humor</a></li>
-                                <li><a class="dropdown-item" href="#">Poesía</a></li>
-                                <li><a class="dropdown-item" href="#">Cuentos</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="1">Romántico</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="2">Terror y Misterio</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="3">Aventura</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="4">Ciencia Ficción</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="5">Policiaca</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="6">Humor</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="7">Poesía</a></li>
+                                <li><a class="dropdown-item" asp-controller="Libro" asp-action="LibrosPorCategoria" asp-route-id="8">Cuentos</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

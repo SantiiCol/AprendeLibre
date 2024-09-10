@@ -1,0 +1,28 @@
+﻿@model AprendeLibre.Models.Libro
+
+<div class="book-details-container">
+    <div class="book-header">
+        <h5>@Model.NombreLibro</h5>
+    </div>
+    <div class="book-info">
+        <p><strong>Autor:</strong> @Model.Autor</p>
+        <p><strong>Descripción:</strong> @Model.Descripcion</p>
+        <img src="@Model.Imagen" alt="@Model.NombreLibro" class="book-image" />
+    </div>
+</div>
+
+<div class="modal-footer">
+    @if (!string.IsNullOrEmpty(Model.PdfUrl))
+    {
+        <a href="@Model.PdfUrl" target="_blank" class="btn btn-primary">Leer PDF</a>
+    }
+    else
+    {
+        <p>El PDF no está disponible.</p>
+    }
+
+    <a href="@Url.Action("Edit", "Libro", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+
+    <a href="@Url.Action("ConfirmarEliminar", "Libro", new { id = Model.Id })" class="btn btn-danger">Eliminar</a>
+</div>
+

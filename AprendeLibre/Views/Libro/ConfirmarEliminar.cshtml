@@ -1,0 +1,43 @@
+﻿@model AprendeLibre.Models.Libro
+
+@{
+    ViewData["Title"] = "Confirmar Eliminación";
+}
+
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <div class="form-header-icon">
+                <img src="https://img.icons8.com/ios/50/000000/delete-forever.png" alt="Delete Icon" />
+            </div>
+            <div class="form-header-text">
+                <h1 class="form-title">Confirmar Eliminación</h1>
+                <p class="form-subtitle">¿Estás seguro de que deseas eliminar este libro?</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <p><strong>Libro:</strong> @Model.NombreLibro</p>
+            <p><strong>Autor:</strong> @Model.Autor</p>
+            <p><strong>Descripción:</strong> @Model.Descripcion</p>
+        </div>
+
+        <form asp-action="EliminarConfirmado" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <button type="submit" class="form-btn form-btn-primary">
+                    Confirmar Eliminación
+                </button>
+            </div>
+
+            <div>
+                <a asp-action="LibrosPorCategoria" asp-route-id="@Model.IdCategoria" class="form-back-link">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</body>

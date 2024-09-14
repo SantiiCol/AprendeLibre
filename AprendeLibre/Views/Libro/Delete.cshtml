@@ -1,0 +1,65 @@
+﻿@model AprendeLibre.Models.Libro
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Eliminar Libro</h1>
+
+<h3>¿Estás seguro de que quieres eliminar este libro?</h3>
+<div>
+    <h4>Libro</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreLibro)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NombreLibro)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PdfUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PdfUrl)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCategoriaNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdCategoriaNavigation.Id)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" onsubmit="return ConfirmDelete()">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function ConfirmDelete() {
+            return confirm('¿Estás seguro de que deseas eliminar este libro? Esta acción no se puede deshacer.');
+        }
+    </script>
+}

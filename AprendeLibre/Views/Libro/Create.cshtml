@@ -1,0 +1,62 @@
+﻿@model AprendeLibre.Models.Libro
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<form asp-action="Create" enctype="multipart/form-data" class="form-container">
+    <div class="form-header">
+        <div class="form-header-icon">
+            <img src="~/img/iconlibro.png" alt="Book Icon" />
+        </div>
+        <div class="form-header-text">
+            <h1 class="form-title">Crear nuevo libro</h1>
+            <h4 class="form-subtitle">Por favor, complete los campos requeridos</h4>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <label asp-for="Autor" class="form-label"></label>
+        <input asp-for="Autor" class="form-control" />
+        <span asp-validation-for="Autor" class="form-error"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NombreLibro" class="form-label"></label>
+        <input asp-for="NombreLibro" class="form-control" />
+        <span asp-validation-for="NombreLibro" class="form-error"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Descripcion" class="form-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+        <span asp-validation-for="Descripcion" class="form-error"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Imagen" class="form-label"></label>
+        <input asp-for="Imagen" type="file" class="form-control" />
+        <span asp-validation-for="Imagen" class="form-error"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PdfUrl" class="form-label"></label>
+        <input asp-for="PdfUrl" type="file" class="form-control" />
+        <span asp-validation-for="PdfUrl" class="form-error"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IdCategoria" class="form-label"></label>
+        <select asp-for="IdCategoria" asp-items="ViewBag.Categorias" class="form-control"></select>
+        <span asp-validation-for="IdCategoria" class="form-error"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="form-btn form-btn-primary" /><br>
+        <a href="@Url.Action("LibrosPorCategoria", "Libro", new { id = ViewBag.IdCategoria })" class="form-back-link">Volver a la lista</a>
+    </div>
+
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

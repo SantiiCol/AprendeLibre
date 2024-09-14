@@ -1,0 +1,16 @@
+﻿@model AprendeLibre.Models.Libro
+
+@{
+    ViewData["Title"] = "Leer PDF";
+}
+
+<h1>@Model.NombreLibro</h1>
+
+@if (!string.IsNullOrEmpty(Model.PdfUrl))
+{
+    <iframe src="@Model.PdfUrl" width="100%" height="600px"></iframe>
+}
+else
+{
+    <p>PDF no disponible.</p>
+}

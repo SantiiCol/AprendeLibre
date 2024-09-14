@@ -1,0 +1,126 @@
+﻿@model AprendeLibre.Models.Categorium
+
+@{
+    ViewData["Title"] = "Libros de la categoría " + Model.NombreCategoria;
+    string query = ViewBag.Query as string; // Obtener la consulta de búsqueda
+}
+
+
+<!-- Encabezado de la categoría con imagen de fondo -->
+<div class="category-header-bg">
+    <div class="overlay">
+        <div class="category-header">
+            <div class="icon">
+                <img src="~/img/iconlibro.png" />
+            </div>
+            <h1>@ViewData["Title"]</h1>
+            <a href="@Url.Action("Create", "Libro", new { idCategoria = Model.Id })" class="btn btn-primary">Crear Nuevo Libro</a>
+        </div>
+
+        <!-- Campo de búsqueda -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar libros..." onkeyup="searchBooks()" class="form-control" />
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Contenedor de las cards de libros -->
+<div class="row" id="booksContainer">
+    @foreach (var libro in Model.Libros)
+    {
+        <div class="col-md-2">
+            <div class="card mb-4">
+                <img class="card-img-top" src="@libro.Imagen" alt="@libro.NombreLibro" />
+                <div class="card-body">
+                    <h5 class="card-title">@libro.NombreLibro</h5>
+                    <a href="#" class="btn btn-primary" onclick="openBookDetails(@libro.Id)">Detalles</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal para mostrar los detalles del libro -->
+<div class="modal fade" id="bookDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookDetailsModalLabel">Detalles del Libro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="bookDetailsContent">
+                <!-- Aquí se cargarán los detalles del libro -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<h2 class="section-title">Autores Populares</h2>
+<div class="popular-authors">
+    <div class="author-card">
+        <img src="~/img/stephenking.jpg" alt="Stephen King" class="author-img">
+        <div class="author-info">
+            <h3 class="author-name">Stephen King</h3>
+            <p class="author-bio">Nacido el 21 de septiembre de 1947 en Portland, Estados Unidos, King se ha destacado como un prolífico escritor de novelas de terror, ficción sobrenatural, misterio, ciencia ficción y literatura fantástica.</p>
+        </div>
+    </div>
+    <div class="author-card">
+        <img src="~/img/julioverne.jpg" alt="Julio Verne" class="author-img">
+        <div class="author-info">
+            <h3 class="author-name">Julio Verne</h3>
+            <p class="author-bio">Escritor, poeta y dramaturgo francés célebre por sus novelas de aventuras y por su profunda influencia en el género literario de la ciencia ficción.</p>
+        </div>
+    </div>
+    <div class="author-card">
+        <img src="~/img/janeausten.jpg" alt="Jane Austen" class="author-img">
+        <div class="author-info">
+            <h3 class="author-name">Jane Austen</h3>
+            <p class="author-bio">Jane Austen es considerada la primera novelista inglesa moderna y en la actualidad su obra sigue viva e influyente, su recepción va más allá del interés académico, siendo leída por un amplio público. </p>
+        </div>
+    </div>
+    <div class="author-card">
+        <img src="~/img/williamshakespeare.jpg" alt="William Shakespeare" class="author-img">
+        <div class="author-info">
+            <h3 class="author-name">William Shakespeare</h3>
+            <p class="author-bio">Se le considera el mejor escritor en lengua inglesa y el dramaturgo más importante del mundo. Sus obras han inspirado a grandes artistas a lo largo de la historia con excelentes frases sobre el amor, el drama y la filosofía.</p>
+        </div>
+    </div>
+    <!-- Añadir más author-card si es necesario -->
+</div>
+
+
+
+
+
+@section Scripts {
+    <script>
+        function searchBooks() {
+            var query = document.getElementById('searchInput').value;
+            var categoryId = @Model.Id; // Id de la categoría actual
+
+            // Realiza la petición para filtrar los libros
+            fetch(`/Libro/FiltrarLibrosPorCategoria?id=${categoryId}&query=${query}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('booksContainer').innerHTML = data;
+                })
+                .catch(error => console.error('Error al buscar libros:', error));
+        }
+
+        function openBookDetails(id) {
+            fetch(`/Libro/Details?id=${id}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('bookDetailsContent').innerHTML = data;
+                    var myModal = new bootstrap.Modal(document.getElementById('bookDetailsModal'), {
+                        keyboard: false
+                    });
+                    myModal.show();
+                })
+                .catch(error => console.error('Error al cargar los detalles del libro:', error));
+        }
+    </script>
+}

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AprendeLibre.Models.Libro>
+
+@foreach (var libro in Model)
+{
+    <div class="col-md-2">
+        <!-- 4 cards por fila en pantallas medianas y mayores -->
+        <div class="card mb-4">
+            <img class="card-img-top" src="@libro.Imagen" alt="@libro.NombreLibro" />
+            <div class="card-body">
+                <h5 class="card-title">@libro.NombreLibro</h5>
+                <a href="#" class="btn btn-primary" onclick="openBookDetails(@libro.Id)">Detalles</a>
+            </div>
+        </div>
+    </div>
+}

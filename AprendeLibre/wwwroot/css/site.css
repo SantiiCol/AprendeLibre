@@ -549,3 +549,809 @@ footer button[type="submit"] {
     footer button[type="submit"]:hover {
         background-color: #2980b9;
     }
+
+
+
+
+
+
+
+
+
+
+/* Imagen de fondo y superposición */
+.category-header-bg {
+    position: relative;
+    background-image: url('../img/fondoseccionlibros.png');
+    background-size: cover;
+    height: 600px; /* Ajusta la altura según sea necesario */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Capa oscura */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+/* Estilo para el contenedor del encabezado */
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    z-index: 2; /* Coloca el contenido por encima de la capa oscura */
+}
+
+    .category-header .icon img {
+        width: 70px;
+        height: 70px;
+        border-radius: 20%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-right: 20px;
+        position:relative;
+        top:-245px;
+    }
+
+    .category-header h1 {
+        font-size: 2.4rem;
+        margin: 0;
+        font-weight: 600;
+        color: white; /* Cambiamos el color a blanco para que contraste */
+        flex: 1;
+        position:absolute;
+        top:40px;
+        left:130px; 
+        
+    }
+
+    .category-header .btn {
+        background-color: #007bff;
+        border-color: #4952b5;
+        border-radius: 30px;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        color: white;
+        position: absolute;
+        left: 50px;
+        top: 390px;
+    }
+
+        .category-header .btn:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+
+        }
+
+/* Campo de búsqueda */
+.search-bar {
+    position: absolute;
+    top: 40px; /* Ajusta la distancia desde el borde superior */
+    right: 20px; /* Ajusta la distancia desde el borde derecho */
+    width: 400px; /* Establece un ancho fijo para el buscador */
+    z-index: 2;
+}
+
+    .search-bar input {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px 20px;
+        border-radius: 25px;
+        border: 1px solid #ced4da;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+    }
+
+        .search-bar input::placeholder {
+            color: #6c757d;
+        }
+
+
+
+
+
+
+
+
+/* Contenedor de las cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Distribuye las cards uniformemente */
+    gap: 10px; /* Espacio entre las cards */
+    padding: 0; /* Elimina el padding alrededor del contenedor */
+    margin: 0 auto; /* Centra el contenedor */
+    max-width: 100%; /* Ocupa todo el ancho de la pantalla */
+}
+
+/* Estilo para las cards */
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: calc(290px - 80px); /* 5 cards por fila, ajustando el espacio */
+    margin: 0; /* Elimina márgenes laterales */
+}
+
+    /* Efecto hover para las cards */
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Imagen dentro de la card */
+    .card img {
+        width: 100%;
+        height: 330px; /* Ajusta la altura de la imagen */
+        object-fit: cover; /* Mantiene la proporción y cubre el área */
+    }
+
+/* Cuerpo de la card */
+.card-body {
+    padding: 10px;
+    background: #fff;
+}
+
+.card-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    margin-bottom: 12px;
+    color: #666;
+}
+
+/* Estilo del modal */
+.modal-content {
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+
+
+
+
+
+
+
+
+
+/* Contenedor general para los detalles del libro */
+.book-details-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Encabezado del libro */
+.book-header h5 {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Información del libro */
+.book-info {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Imagen del libro */
+.book-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* Estilo para los botones en el modal */
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 15px;
+}
+
+    /* Botones del modal */
+    .modal-footer .btn {
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    /* Botón Leer */
+    .modal-footer .btn-primary {
+        background-color: #4a90e2;
+        border-color: #4a90e2;
+    }
+
+        .modal-footer .btn-primary:hover {
+            background-color: #357ab8;
+            border-color: #2e68a0;
+        }
+
+    /* Botón Editar */
+    .modal-footer .btn-warning {
+        background-color: #f0ad4e;
+        border-color: #eea236;
+    }
+
+        .modal-footer .btn-warning:hover {
+            background-color: #ec971f;
+            border-color: #d58512;
+        }
+
+    /* Botón Eliminar */
+    .modal-footer .btn-danger {
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+        .modal-footer .btn-danger:hover {
+            background-color: #c9302c;
+            border-color: #ac2925;
+        }
+
+
+
+
+
+.section-title {
+    text-align: center;
+    font-weight: 600; /* Cambiado a un peso más grueso */
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    padding-left: 20px;
+}
+.author-name {
+    font-weight: 600;
+}
+
+.popular-authors {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten a varias filas */
+    gap: 20px; /* Espacio entre las cards */
+    justify-content: space-between; /* Distribuye las cards uniformemente */
+    padding: 10px;
+}
+
+.author-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 23%; /* Ajuste para que quepan 4 cards por fila */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .author-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+.author-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    display: block; /* Asegura que la imagen se comporte como un bloque */
+    margin-left: auto; /* Centra la imagen horizontalmente */
+    margin-right: auto; /* Centra la imagen horizontalmente */
+}
+
+
+.author-info {
+    text-align: center;
+}
+
+.author-name {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #333;
+}
+
+.author-bio {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+
+
+
+
+
+
+/* Diseño minimalista y moderno para el formulario */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Encabezado del formulario con ícono */
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-header-icon img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.form-header-text {
+    text-align: left;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.form-subtitle {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #ecf0f1;
+    margin-top: 20px;
+}
+
+
+.form-container {
+    background: linear-gradient(135deg, #003366, #0056b3);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #1abc9c;
+        outline: none;
+        background-color: #f1f2fe;
+    }
+
+.form-error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.form-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.form-btn-primary {
+    background-color: #38439f;
+    color: white;
+    display: flex;
+    justify-content: center
+}
+
+    .form-btn-primary:hover {
+        background-color: #949ce3;
+    }
+
+/* Estilo del enlace "Back to List" */
+.form-back-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #2980b9;
+    text-decoration: none;
+}
+
+    .form-back-link:hover {
+        text-decoration: underline;
+    }
+
+/* Estilo de campos de archivo */
+input[type="file"] {
+    font-size: 14px;
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .form-btn {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+/*diseño del formulario de editar*/
+
+
+
+/* Diseño minimalista y moderno para el formulario */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-header-icon img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.form-header-text {
+    text-align: left;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.form-subtitle {
+    font-size: 18px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ecf0f1;
+    margin-top: 20px;
+}
+
+.form-container {
+    background: linear-gradient(135deg, #003366, #0056b3);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.text-pdf {
+    color: white;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f1f2f3;
+    transition: border-color 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #1abc9c;
+        outline: none;
+        background-color: #f1f2fe;
+    }
+
+.form-error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.form-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.form-btn-primary {
+    background-color: #38439f;
+    color: white;
+}
+
+    .form-btn-primary:hover {
+        background-color: #949ce3;
+    }
+
+.form-back-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+    .form-back-link:hover {
+        text-decoration: underline;
+    }
+
+input[type="file"] {
+    font-size: 14px;
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        max-width: 90%;
+
+    }
+
+    .form-btn {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+/*estilo del formulario de confirmar eliminacion de libro*/
+
+
+
+
+/* Diseño minimalista y moderno para el formulario */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Encabezado del formulario con ícono */
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-header-icon img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.form-header-text {
+    text-align: left;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.form-subtitle {
+    font-size: 18px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #ecf0f1;
+    margin-top: 20px;
+}
+
+
+.form-container {
+    background: linear-gradient(135deg, #003366, #0056b3);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    color: white; 
+}
+
+.form-label {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #1abc9c;
+        outline: none;
+        background-color: #f1f2fe;
+    }
+
+.form-error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.form-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.form-btn-primary {
+    background-color: #38439f;
+    color: white;
+    display: flex;
+    justify-content: center
+}
+
+    .form-btn-primary:hover {
+        background-color: #949ce3;
+    }
+
+/* Estilo del enlace "Back to List" */
+.form-back-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+    .form-back-link:hover {
+        text-decoration: underline;
+    }
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .form-btn {
+        width: 100%;
+    }
+}

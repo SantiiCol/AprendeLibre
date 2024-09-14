@@ -132,7 +132,7 @@ public partial class AplDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Autor).HasMaxLength(255);
-            entity.Property(e => e.Descripcion).HasMaxLength(255);
+            entity.Property(e => e.Descripcion).HasMaxLength(500);
             entity.Property(e => e.IdCategoria).HasColumnName("Id_Categoria");
             entity.Property(e => e.Imagen).HasMaxLength(255);
             entity.Property(e => e.NombreLibro).HasMaxLength(255);

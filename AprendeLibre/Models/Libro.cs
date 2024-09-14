@@ -13,13 +13,13 @@ public partial class Libro
 
     public string Descripcion { get; set; } = null!;
 
-    public string Imagen { get; set; } = null!;
+    public string? Imagen { get; set; }
 
-    public string PdfUrl { get; set; } = null!;
+    public string? PdfUrl { get; set; }
 
     public int IdCategoria { get; set; }
 
-    public virtual Categorium IdCategoriaNavigation { get; set; } = null!;
+    public virtual Categorium? IdCategoriaNavigation { get; set; }
 
     public virtual ICollection<Categorium> Categoria { get; set; } = new List<Categorium>();
 }

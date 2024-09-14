@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Términos y Servicios";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="custom-container">
+        <header class="custom-header">
+            <h1 class="custom-title">@ViewData["Title"]</h1>
+        </header>
+        <section class="terms-section">
+            <div class="terms-content">
+                <h2 class="custom-subtitle">Uso del Servicio</h2>
+                <p class="custom-text">Al utilizar nuestros servicios, aceptas cumplir con nuestros términos y condiciones. Estos términos pueden ser modificados en cualquier momento sin previo aviso.</p>
+
+                <h2 class="custom-subtitle">Responsabilidad del Usuario</h2>
+                <p class="custom-text">Eres responsable de mantener la confidencialidad de tu cuenta y contraseña. Cualquier actividad realizada bajo tu cuenta es tu responsabilidad.</p>
+
+                <h2 class="custom-subtitle">Modificaciones y Cancelaciones</h2>
+                <p class="custom-text">Nos reservamos el derecho de modificar o cancelar nuestros servicios en cualquier momento. Cualquier cambio será notificado a través de nuestro sitio web.</p>
+
+                <h2 class="custom-subtitle">Contacto</h2>
+                <p class="custom-text">Para cualquier pregunta sobre nuestros términos y condiciones, contáctanos a través de nuestro formulario de contacto.</p>
+            </div>
+        </section>
+        <footer class="custom-footer">
+            <p>&copy; @DateTime.Now.Year - Todos los derechos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+<style>
+    /* Contenedor principal */
+    .custom-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilos para el encabezado */
+    .custom-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .custom-title {
+        font-size: 2.5em;
+        color: #333;
+    }
+
+    /* Sección de Términos y Servicios */
+    .terms-section {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .terms-content {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .custom-subtitle {
+        font-size: 2em;
+        color: #444;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .custom-text {
+        font-size: 1.2em;
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    /* Estilos para el pie de página */
+    .custom-footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.9em;
+        color: #888;
+    }
+
+</style>

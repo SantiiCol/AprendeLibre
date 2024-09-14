@@ -1,0 +1,76 @@
+﻿@model AprendeLibre.Models.Libro
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="form-container">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-header">
+            <div class="form-header-icon">
+                <img src="~/img/iconlibro.png" alt="Icono de libro" />
+            </div>
+            <div class="form-header-text">
+                <h2 class="form-title">Editar Libro</h2>
+                <p class="form-subtitle">Modifica la información del libro</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NombreLibro" class="control-label form-label"></label>
+            <input asp-for="NombreLibro" class="form-control" />
+            <span asp-validation-for="NombreLibro" class="text-danger form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Autor" class="control-label form-label"></label>
+            <input asp-for="Autor" class="form-control" />
+            <span asp-validation-for="Autor" class="text-danger form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Descripcion" class="control-label form-label"></label>
+            <textarea asp-for="Descripcion" class="form-control"></textarea>
+            <span asp-validation-for="Descripcion" class="text-danger form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Imagen" class="control-label form-label"></label>
+            <input asp-for="Imagen" class="form-control" type="file" />
+            @if (!string.IsNullOrEmpty(Model.Imagen))
+            {
+                <div>
+                    <label style="color:white">Imagen Actual:</label><br />
+                    <img src="@Model.Imagen" alt="Imagen actual" class="img-thumbnail" style="max-width: 200px;" />
+                </div>
+            }
+            <span asp-validation-for="Imagen" class="text-danger form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PdfUrl" class="control-label form-label"></label>
+            <input asp-for="PdfUrl" type="file" class="form-control" />
+            @if (!string.IsNullOrEmpty(Model.PdfUrl))
+            {
+                <div>
+                    <label style="color:white">PDF Actual:</label><br />
+                    <a href="@Model.PdfUrl" class="text-pdf" target="_blank">Ver PDF actual</a>
+                </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label asp-for="IdCategoria" class="control-label form-label"></label>
+            <select asp-for="IdCategoria" class="form-control" asp-items="@(new SelectList(ViewBag.Categorias, "Id", "NombreCategoria"))"></select>
+            <span asp-validation-for="IdCategoria" class="text-danger form-error"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Guardar cambios" class="btn btn-primary form-btn form-btn-primary" />
+        </div>
+
+        <div>
+            <a asp-action="LibrosPorCategoria" asp-route-id="@Model.IdCategoria" class="form-back-link">Volver a los libros</a>
+        </div>
+    </form>
+</div>
+

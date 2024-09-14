@@ -11,7 +11,7 @@
 
 <h2>Clases de Ingles</h2>
 
-@if (User.IsInRole("Profesor"))
+@if (User.IsInRole("Profesor") || User.IsInRole("Administrador"))
 {
     <a class="btn btn-primary mb-3" href="@Url.Action("Create", "Clase")">Crear Nueva Clase</a>
 }
@@ -37,7 +37,7 @@
                         <a href="@clase.SubirArchivo" class="btn btn-primary btn-custom" download>Descargar Archivo</a>
                     }
                     <a href="@Url.Action("Details", "Clase", new { id = clase.Id })" class="btn btn-secondary btn-custom">Ver Detalles</a>
-                    @if (User.IsInRole("Profesor"))
+                    @if (User.IsInRole("Profesor") || User.IsInRole("Administrador"))
                     {
                         <a href="@Url.Action("Edit", "Clase", new { id = clase.Id })" class="btn btn-warning btn-custom">Editar</a>
                         <form asp-action="Delete" method="post" class="d-inline">

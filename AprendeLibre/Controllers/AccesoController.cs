@@ -36,6 +36,10 @@ namespace DesarrolloAprendeLibre.Controllers
         // Acción para mostrar la vista de registro de usuario con los roles disponibles
         public IActionResult Register()
         {
+            // Filtra los roles para excluir el rol de administrador
+            var roles = _context.Roles
+                                .Where(r => r.Rol != "Administrador")
+                                .ToList();
             ViewBag.Roles = new SelectList(_context.Roles, "Id", "Rol");
             return View();
         }
@@ -48,6 +52,11 @@ namespace DesarrolloAprendeLibre.Controllers
             if (_usuario.Clave != _usuario.ConfirmarClave)
             {
                 ViewData["mensaje"] = "Las contraseñas no coinciden";
+
+                // Filtra los roles nuevamente en caso de error
+                var roles = _context.Roles
+                                    .Where(r => r.Rol != "Administrador")
+                                    .ToList();
                 ViewBag.Roles = new SelectList(_context.Roles, "Id", "Rol");
                 return View();
             }
@@ -179,6 +188,7 @@ namespace DesarrolloAprendeLibre.Controllers
         // Acción para cerrar sesión
         public async Task<IActionResult> Salir()
         {
+            HttpContext.Session.Clear();    
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Acceso");
         }

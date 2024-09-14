@@ -2,6 +2,7 @@
 using AprendeLibre.Permisos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
@@ -20,125 +21,30 @@ namespace AprendeLibre.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
+
+        // Index Method
         public async Task<IActionResult> Index()
         {
             var clases = await _context.Clases.ToListAsync();
             return View(clases);
         }
 
-        public async Task<IActionResult> Matematicas()
+        // Methods for viewing classes by subject
+        private async Task<IActionResult> ViewBySubject(string subject)
         {
-            var clases = await _context.Clases.Where(c => c.Materia == "Matematicas").ToListAsync();
-            return View(clases);
+            var clases = await _context.Clases.Where(c => c.Materia == subject).ToListAsync();
+            return View(subject, clases);
         }
 
-        public async Task<IActionResult> Español()
-        {
-            var clases = await _context.Clases.Where(c => c.Materia == "Español").ToListAsync();
-            return View(clases);
-        }
+        public Task<IActionResult> Matematicas() => ViewBySubject("Matematicas");
+        public Task<IActionResult> Español() => ViewBySubject("Español");
+        public Task<IActionResult> Ciencias_Naturales() => ViewBySubject("Ciencias Naturales");
+        public Task<IActionResult> Ingles() => ViewBySubject("Ingles");
+        public Task<IActionResult> Fisica() => ViewBySubject("Fisica");
+        public Task<IActionResult> Sociales() => ViewBySubject("Sociales");
+        public Task<IActionResult> Etica() => ViewBySubject("Etica");
 
-        public async Task<IActionResult> Ciencias_Naturales()
-        {
-            var clases = await _context.Clases.Where(c => c.Materia == "Ciencias Naturales").ToListAsync();
-            return View(clases);
-        }
-
-        public async Task<IActionResult> Ingles()
-        {
-            var clases = await _context.Clases.Where(c => c.Materia == "Ingles").ToListAsync();
-            return View(clases);
-        }
-
-        public async Task<IActionResult> Fisica()
-        {
-            var clases = await _context.Clases.Where(c => c.Materia == "Fisica").ToListAsync();
-            return View(clases);
-        }
-
-        public async Task<IActionResult> Sociales()
-        {
-            var clases = await _context.Clases.Where(c => c.Materia == "Sociales").ToListAsync();
-            return View(clases);
-        }
-
-        public async Task<IActionResult> Etica()
-        {
-            var clases = await _context.Clases.Where(c => c.Materia == "Etica").ToListAsync();
-            return View(clases);
-        }
-
-
-        [Authorize(Policy = "ProfesorPolicy")]
-        [HttpGet]
-        public IActionResult create()
-        {
-            return View();
-        }
-
-        [Authorize(Policy = "ProfesorPolicy")]
-        [HttpPost]
-        public async Task<IActionResult> create(Clase clase, IFormFile imagen, IFormFile Archivo)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Handle image upload
-                    if (imagen != null && imagen.Length > 0)
-                    {
-                        var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "img");
-                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + imagen.FileName;
-                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await imagen.CopyToAsync(fileStream);
-                        }
-
-                        clase.Imagen = "/img/" + uniqueFileName;
-                    }
-
-                    // Handle document upload
-                    if (Archivo != null && Archivo.Length > 0)
-                    {
-                        var allowedExtensions = new[] { ".pdf", ".doc", ".docx" };
-                        var fileExtension = Path.GetExtension(Archivo.FileName).ToLower();
-
-                        if (!allowedExtensions.Contains(fileExtension))
-                        {
-                            ModelState.AddModelError("", "Solo se permiten archivos PDF o Word.");
-                            return View(clase);
-                        }
-
-                        var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "documents");
-                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + Archivo.FileName;
-                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await Archivo.CopyToAsync(fileStream);
-                        }
-
-                        clase.SubirArchivo = "/documents/" + uniqueFileName;
-                    }
-
-                    _context.Add(clase);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(clase.Materia);
-                }
-                catch (DbUpdateException ex)
-                {
-                    ModelState.AddModelError("", "No se pudo guardar los cambios. Inténtalo de nuevo, y si el problema persiste, consulte con su administrador del sistema.");
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", $"Error inesperado: {ex.Message}");
-                }
-            }
-            return View(clase);
-        }
-
+        // Details Method
         public async Task<IActionResult> Details(int id)
         {
             var clase = await _context.Clases.FirstOrDefaultAsync(m => m.Id == id);
@@ -149,115 +55,123 @@ namespace AprendeLibre.Controllers
             return View(clase);
         }
 
-        [Authorize(Policy = "ProfesorPolicy")]
+        // Create Methods
+        
+        [HttpGet]
+        public IActionResult Create()
+        {
+            ViewBag.GradosList = new SelectList(_context.Grados, "Id", "NombreGrado");
+            return View();
+        }
+
+        
+        [HttpPost]
+        public async Task<IActionResult> Create(Clase clase, IFormFile imagen, IFormFile archivo)
+        {
+            if (!ModelState.IsValid) return View(clase);
+
+            try
+            {
+                clase.Imagen = await SaveFileAsync(imagen, "img");
+                clase.SubirArchivo = await SaveFileAsync(archivo, "documents", new[] { ".pdf", ".doc", ".docx" });
+
+                _context.Add(clase);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(clase.Materia);
+            }
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "No se pudo guardar los cambios. Inténtalo de nuevo, y si el problema persiste, consulte con su administrador del sistema.");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Error inesperado: {ex.Message}");
+            }
+
+            return View(clase);
+        }
+
+        // Edit Methods
+        
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var clase = await _context.Clases.FindAsync(id);
-            if (clase == null)
-            {
-                return NotFound();
-            }
+            if (clase == null) return NotFound();
+
             return View(clase);
         }
 
+        [Authorize(Policy = "AdministradorPolicy")]
         [Authorize(Policy = "ProfesorPolicy")]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Clase clase, IFormFile imagen, IFormFile archivo)
         {
-            if (id != clase.Id)
+            if (id != clase.Id) return NotFound();
+
+            if (!ModelState.IsValid) return View(clase);
+
+            try
             {
-                return NotFound();
-            }
+                clase.Imagen = await SaveFileAsync(imagen, "img");
+                clase.SubirArchivo = await SaveFileAsync(archivo, "documents", new[] { ".pdf", ".doc", ".docx" });
 
-            if (ModelState.IsValid)
+                _context.Update(clase);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(clase.Materia);
+            }
+            catch (DbUpdateConcurrencyException)
             {
-                try
-                {
-                    // Handle image update
-                    if (imagen != null && imagen.Length > 0)
-                    {
-                        var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "img");
-                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + imagen.FileName;
-                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await imagen.CopyToAsync(fileStream);
-                        }
-
-                        clase.Imagen = "/img/" + uniqueFileName;
-                    }
-
-                    // Handle document update
-                    if (archivo != null && archivo.Length > 0)
-                    {
-                        var allowedExtensions = new[] { ".pdf", ".doc", ".docx" };
-                        var fileExtension = Path.GetExtension(archivo.FileName).ToLower();
-
-                        if (!allowedExtensions.Contains(fileExtension))
-                        {
-                            ModelState.AddModelError("", "Solo se permiten archivos PDF o Word.");
-                            return View(clase);
-                        }
-
-                        var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "documents");
-                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + archivo.FileName;
-                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await archivo.CopyToAsync(fileStream);
-                        }
-
-                        clase.SubirArchivo = "/documents/" + uniqueFileName;
-                    }
-
-                    _context.Update(clase);
-                    await _context.SaveChangesAsync();
-
-                    // Redirect to the appropriate subject view
-                    return RedirectToAction(clase.Materia);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClassExists(clase.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                if (!ClaseExists(clase.Id)) return NotFound();
+                throw;
             }
-            return View(clase);
         }
 
-        private bool ClassExists(int id)
-        {
-            return _context.Clases.Any(e => e.Id == id);
-        }
-
-        [Authorize(Policy = "ProfesorPolicy")]
+        // Delete Method
+        
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var clase = await _context.Clases.FindAsync(id);
-            if (clase == null)
-            {
-                return NotFound();
-            }
+            if (clase == null) return NotFound();
 
             _context.Clases.Remove(clase);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
+        // Helper Methods
         private bool ClaseExists(int id)
         {
-            return _context.Clases.Any(e => e.Id== id);
+            return _context.Clases.Any(e => e.Id == id);
         }
 
+        private async Task<string> SaveFileAsync(IFormFile file, string folder, string[] allowedExtensions = null)
+        {
+            if (file == null || file.Length == 0) return null;
+
+            if (allowedExtensions != null)
+            {
+                var fileExtension = Path.GetExtension(file.FileName).ToLower();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    throw new InvalidOperationException("Solo se permiten archivos PDF o Word.");
+                }
+            }
+
+            var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, folder);
+            var uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            return $"/{folder}/{uniqueFileName}";
+        }
     }
 }

@@ -17,7 +17,7 @@ public partial class Clase
 
     public string Imagen { get; set; } = null!;
 
-    public int IdGrados { get; set; }
+    public int? IdGrados { get; set; }
 
     public virtual Grado IdGradosNavigation { get; set; } = null!;
 }

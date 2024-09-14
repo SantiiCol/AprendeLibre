@@ -10,138 +10,85 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 60vh;
-            background-color: #f0f0f0; /* Fondo opcional para toda la página */
-        }
-
-        .form {
+        .custom-form-container {
+            background-color: #ffffff;
+            border: 1px solid #d1e7dd; /* Verde suave */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto; /* Centra horizontalmente */
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 350px;
-            padding: 20px;
-            border-radius: 20px;
-            position: relative;
-            background-color: #1a1a1a;
-            color: #fff;
-            border: 1px solid #333;
-        }
-
-        .title {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -1px;
-            position: relative;
-            display: flex;
             align-items: center;
-            padding-left: 30px;
-            color: #00bfff;
+            margin-top: 150px;
         }
 
-            .title::before {
-                width: 18px;
-                height: 18px;
-            }
-
-            .title::after {
-                width: 18px;
-                height: 18px;
-                animation: pulse 1s linear infinite;
-            }
-
-            .title::before,
-            .title::after {
-                position: absolute;
-                content: "";
-                height: 16px;
-                width: 16px;
-                border-radius: 50%;
-                left: 0px;
-                background-color: #00bfff;
-            }
-
-        .message,
-        .signin {
-            font-size: 14.5px;
-            color: rgba(255, 255, 255, 0.7);
+        .custom-form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+            width: 100%;
         }
 
-        .signin {
+        .custom-form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b0bec5; /* Azul suave */
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+            .custom-form-control:focus {
+                border-color: #4dabf7; /* Azul para enfoque */
+                outline: none;
+            }
+
+        .custom-btn-primary {
+            width: 100%;
+            padding: 10px;
+            background-color: #4dabf7; /* Azul relacionado con la educación */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
             text-align: center;
         }
 
-            .signin a:hover {
-                text-decoration: underline royalblue;
+            .custom-btn-primary:hover {
+                background-color: #1e88e5; /* Azul más oscuro al pasar el mouse */
             }
 
-            .signin a {
-                color: #00bfff;
-            }
-
-        .flex {
-            display: flex;
-            width: 100%;
-            gap: 6px;
-        }
-
-        .form label {
-            position: relative;
-        }
-
-            .form label .input {
-                background-color: #333;
-                color: #fff;
-                width: 100%;
-                padding: 20px 05px 05px 10px;
-                outline: 0;
-                border: 1px solid rgba(105, 105, 105, 0.397);
-                border-radius: 10px;
-            }
-
-                .form label .input + span {
-                    color: rgba(255, 255, 255, 0.5);
-                    position: absolute;
-                    left: 10px;
-                    top: 0px;
-                    font-size: 0.9em;
-                    cursor: text;
-                    transition: 0.3s ease;
-                }
-
-                .form label .input:placeholder-shown + span {
-                    top: 12.5px;
-                    font-size: 0.9em;
-                }
-
-                .form label .input:focus + span,
-                .form label .input:valid + span {
-                    color: #00bfff;
-                    top: 0px;
-                    font-size: 0.7em;
-                    font-weight: 600;
-                }
-
-        .input {
-            font-size: medium;
-        }
-
-        .submit {
-            border: none;
-            outline: none;
+        .custom-alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
             padding: 10px;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 16px;
-            transform: .3s ease;
-            background-color: #00bfff;
+            border-color: #f5c6cb;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #f5c6cb;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
 
-            .submit:hover {
-                background-color: #00bfff96;
+        .custom-text-center {
+            text-align: center;
+            width: 100%;
+        }
+
+        .custom-text-primary {
+            color: #4dabf7;
+            text-decoration: none;
+        }
+
+            .custom-text-primary:hover {
+                text-decoration: underline;
             }
 
     </style>
@@ -149,30 +96,29 @@
 
 <body>
 
-    <div class="container">
-        <form class="form" action="@Url.Action("Login", "Acceso")" method="post">
-            <p class="title">Inicio de Sesion</p>
-            <p class="message">Inicia Sesion ahora y disfruta de las funciones.</p>
-            <label>
-                <input class="input" type="text" placeholder="" name="NombreUsuario" required="">
-                <span>Nombre de usuario</span>
-            </label>
+    <div class="custom-form-container">
+        <form action="@Url.Action("Login", "Acceso")" method="post">
+            <label for="email" class="form-label">Correo</label>
+            <input type="email" id="email" class="custom-form-control" name="Correo" required>
 
-            <label>
-                <input class="input" type="email" placeholder="" name="Correo" required="">
-                <span>Correo Electrónico</span>
-            </label>
+            <label for="NombreUsuario" class="form-label">Nombre de Usuario</label>
+            <input type="text" id="NombreUsuario" class="custom-form-control" name="NombreUsuario" required>
 
-            <label>
-                <input class="input" type="password" placeholder="" name="Clave" required="">
-                <span>Contraseña</span>
-            </label>
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" class="custom-form-control" name="Clave" required>
 
-            <button class="submit">Iniciar Sesion</button>
-            <p class="signin">¿No tienes una cuenta? <a href="@Url.Action("Register", "Acceso")">Registrarse</a></p>
+            @if (ViewData["Mensaje"] != null)
+            {
+                <div class="alert alert-danger">@ViewData["Mensaje"]</div>
+            }
+
+            <button class="custom-btn-primary" type="submit">Iniciar Sesión</button>
+
+            <div class="custom-text-center mt-3">
+                <a href="@Url.Action("Register", "Acceso")" class="custom-text-primary">¿No tienes cuenta? Registrarse</a>
+            </div>
         </form>
     </div>
-
 
 </body>
 

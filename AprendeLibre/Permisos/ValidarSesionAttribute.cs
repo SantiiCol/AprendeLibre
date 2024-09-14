@@ -12,7 +12,7 @@ namespace AprendeLibre.Permisos
             var session = context.HttpContext.Session;
 
             // Verificar si la sesión contiene el usuario
-            if (session.GetInt32("IdUsuario") == null)
+            if (session.GetInt32("UsuarioId") == null)
             {
                 // Redirigir al usuario a la página de inicio de sesión
                 context.Result = new RedirectToActionResult("Login", "Acceso", null);

@@ -6,205 +6,133 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Registrar</title>
-    <link href="/css/site.css" rel="stylesheet" />
     <style>
-
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 75vh;
-            background-color: #f0f0f0; /* Fondo opcional para toda la página */
+        .custom-form-container {
+            background-color: #ffffff;
+            border: 1px solid #d1e7dd; /* Verde suave */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
         }
 
-        .form {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          max-width: 350px;
-          padding: 20px;
-          border-radius: 20px;
-          position: relative;
-          background-color: #1a1a1a;
-          color: #fff;
-          border: 1px solid #333;
+        .custom-form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
         }
 
-        .title {
-          font-size: 28px;
-          font-weight: 600;
-          letter-spacing: -1px;
-          position: relative;
-          display: flex;
-          align-items: center;
-          padding-left: 30px;
-          color: #00bfff;
+        .custom-form-control, .custom-form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b0bec5; /* Azul suave */
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
 
-        .title::before {
-          width: 18px;
-          height: 18px;
+            .custom-form-control:focus, .custom-form-select:focus {
+                border-color: #4dabf7; /* Azul para enfoque */
+                outline: none;
+            }
+
+        .custom-btn-primary {
+            width: 100%;
+            padding: 10px;
+            background-color: #4dabf7; /* Azul relacionado con la educación */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .title::after {
-          width: 18px;
-          height: 18px;
-          animation: pulse 1s linear infinite;
+            .custom-btn-primary:hover {
+                background-color: #1e88e5; /* Azul más oscuro al pasar el mouse */
+            }
+
+        .custom-alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-color: #f5c6cb;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #f5c6cb;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .title::before,
-        .title::after {
-          position: absolute;
-          content: "";
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          left: 0px;
-          background-color: #00bfff;
+        .custom-text-center {
+            text-align: center;
+            width: 100%;
         }
 
-        .message, 
-        .signin {
-          font-size: 14.5px;
-          color: rgba(255, 255, 255, 0.7);
+        .custom-text-primary {
+            color: #4dabf7;
+            text-decoration: none;
         }
 
-        .signin {
-          text-align: center;
-        }
-
-        .signin a:hover {
-          text-decoration: underline royalblue;
-        }
-
-        .signin a {
-          color: #00bfff;
-        }
-
-        .flex {
-          display: flex;
-          width: 100%;
-          gap: 6px;
-        }
-
-        .form label {
-          position: relative;
-        }
-
-        .form label .input {
-          background-color: #333;
-          color: #fff;
-          width: 100%;
-          padding: 20px 05px 05px 10px;
-          outline: 0;
-          border: 1px solid rgba(105, 105, 105, 0.397);
-          border-radius: 10px;
-        }
-
-        .form label .input + span {
-          color: rgba(255, 255, 255, 0.5);
-          position: absolute;
-          left: 10px;
-          top: 0px;
-          font-size: 0.9em;
-          cursor: text;
-          transition: 0.3s ease;
-        }
-
-        .form label .input:placeholder-shown + span {
-          top: 12.5px;
-          font-size: 0.9em;
-        }
-
-        .form label .input:focus + span,
-        .form label .input:valid + span {
-          color: #00bfff;
-          top: 0px;
-          font-size: 0.7em;
-          font-weight: 600;
-        }
-
-        .input {
-          font-size: medium;
-        }
-
-        .submit {
-          border: none;
-          outline: none;
-          padding: 10px;
-          border-radius: 10px;
-          color: #fff;
-          font-size: 16px;
-          transform: .3s ease;
-          background-color: #00bfff;
-        }
-
-        .submit:hover {
-          background-color: #00bfff96;
-        }
-        
+            .custom-text-primary:hover {
+                text-decoration: underline;
+            }
     </style>
 </head>
 <body>
 
-    <form class="form" action="@Url.Action("Register", "Acceso")" method="post" >
-        <p class="title">Registro </p>
-        <p class="message">Regístrate ahora y disfruta de las funciones.</p>
-        <div class="flex">
-            <label>
-                <input class="input" type="text" placeholder="" name="Nombres" required="">
-                <span>Nombres</span>
-            </label>
-
-            <label>
-                <input class="input" type="text" placeholder="" name="Apellido" required="">
-                <span>Apellidos</span>
-            </label>
-        </div>
-
-        <label>
-            <input class="input" type="text" placeholder="" name="NombreUsuario" required="">
-            <span>Nombre de usuario</span>
-        </label>
-
-        <label>
-            <input class="input" type="email" placeholder="" name="Correo" required="">
-            <span>Correo Electrónico</span>
-        </label>
-
-        <label>
-            <input class="input" type="password" placeholder="" name="Clave" required="">
-            <span>Contraseña</span>
-        </label>
-        <label>
-            <input class="input" type="password" placeholder="" name="ConfirmarClave" required="">
-            <span>Confirmar contraseña</span>
-        </label>
-
-        <!-- Campo select añadido -->
-        <label>
-            <select class="input" name="RolId" required="">
-                <option value="" disabled selected hidden></option>
-                @foreach (var rol in ViewBag.Roles)
-                {
-                    if (rol.Text != "Administrador")
+    <div class="custom-form-container">
+        <form action="@Url.Action("Register", "Acceso")" method="post">
+            <div class="col-12">
+                <label for="validationServer01" class="custom-form-label">Nombres</label>
+                <input type="text" class="custom-form-control" name="Nombres" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer02" class="custom-form-label">Apellidos</label>
+                <input type="text" class="custom-form-control" name="Apellido" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer02" class="custom-form-label">Nombre de usuario</label>
+                <input type="text" class="custom-form-control" name="NombreUsuario" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer03" class="custom-form-label">Correo</label>
+                <input type="email" class="custom-form-control" name="Correo" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer04" class="custom-form-label">Contraseña</label>
+                <input type="password" class="custom-form-control" name="Clave" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer04" class="custom-form-label">Confirmar Contraseña</label>
+                <input type="password" class="custom-form-control" name="ConfirmarClave" required>
+            </div>
+            <div class="col-12">
+                <label for="validationServer04" class="custom-form-label">ROL</label>
+                <select class="custom-form-select" name="RolId" required>
+                    <option selected disabled value="">Selecciona...</option>
+                    @foreach (var rol in ViewBag.Roles)
                     {
                         <option value="@rol.Value">@rol.Text</option>
                     }
+                </select>
+                @if (ViewData["Mensaje"] != null)
+                {
+                    <div class="custom-alert-danger">@ViewData["Mensaje"]</div>
                 }
-            </select>
-            <span>Selecciona tu rol</span>
-        </label>
-        @if(ViewData["Mensaje"] != null)
-        {
-            <div class="custom-alert-danger">@ViewData["Mensaje"]</div>
-        }
-
-        <button class="submit">Registrarse</button>
-        <p class="signin">¿Ya tienes una cuenta? <a href="@Url.Action("Login", "Acceso")">Iniciar Sesión</a></p>
-    </form>
-
-    
+            </div>
+            <div class="col-12">
+                <button class="custom-btn-primary" type="submit">Registrarse</button>
+            </div>
+            <div class="custom-text-center mt-3">
+                <a href="@Url.Action("Login", "Acceso")" class="custom-text-primary">¿Ya tienes una cuenta? Iniciar Sesion</a>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>

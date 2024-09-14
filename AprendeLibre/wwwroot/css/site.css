@@ -13,17 +13,15 @@ html {
 }
 
 html {
-    min-height: 100%;
-    overflow-x: hidden;
+  position: relative;
+  min-height: 100%;
 }
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-    box-sizing:border-box;
     background-color: #f4f4f4;
-    overflow-x:hidden;
 }
 
 .text-center {
@@ -309,7 +307,7 @@ footer {
         background-color: #218838;
     }
 
-    /*Estilo Para carta helper de clase*/
+    /*Estilo Para cartas de clase*/
 
 .titulo-clases {
     text-align: center; /* Alinea el texto al centro */
@@ -423,119 +421,36 @@ footer {
 
 /*Estilos para las cartas de clase*/
 
-.cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; 
+.custom-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+    .custom-card img {
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid #ddd;
+    }
+
+.custom-card-body {
     padding: 20px;
 }
-.card {
-    width: 190px;
-    background: white;
-    padding: .4em;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+
+.custom-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
 }
 
-.card-image .img-M {
-    width: 100%;
-    object-fit: cover;
+.custom-card-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
 }
-.card-image .img-C {
-    width: 100%;
-    object-fit: cover;
-}
-.card-image .img-I {
-    width: 100%;
-    object-fit: cover;
-}
-.card-image .img-S {
-    width: 100%;
-    object-fit: cover;
-}
-.card-image .img-E {
-    width: 100%;
-    object-fit: cover;
-}
-.card-image .img-ET {
-    width: 100%;
-    object-fit: cover;
-}
-
-.card-image {
-    background-color: rgb(236, 236, 236);
-    width: 100%;
-    height: 160px;
-    border-radius: 6px 6px 0 0;
-    overflow: hidden;
-}
-
-    .card-image:hover {
-        transform: scale(0.98);
-    }
-
-.category {
-    text-transform: uppercase;
-    font-size: 0.7em;
-    font-weight: 600;
-    color: rgb(63, 121, 230);
-    padding: 10px 7px 0;
-}
-
-    .category:hover {
-        cursor: pointer;
-    }
-
-.heading {
-    font-weight: 600;
-    color: rgb(88, 87, 87);
-    padding: 7px;
-    text-align: center;
-}
-
-    .heading:hover {
-        cursor: pointer;
-    }
-
-.author {
-    color: gray;
-    font-weight: 400;
-    font-size: 11px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.name {
-    font-weight: 600;
-}
-
-    .name:hover {
-        cursor: pointer;
-    }
-
-.ver-clases-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(63, 121, 230);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    text-align: center;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-    .ver-clases-btn:hover {
-        background-color: rgb(50, 100, 200);
-    }
-
-
-/* Estilos para el footer*/
 
 .custom-card-footer {
     padding: 10px 10px;
@@ -634,17 +549,3 @@ footer button[type="submit"] {
     footer button[type="submit"]:hover {
         background-color: #2980b9;
     }
-
-
-    /*Animacion para el form registro*/
-@keyframes pulse {
-    from {
-        transform: scale(0.9);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(1.8);
-        opacity: 0;
-    }
-}
